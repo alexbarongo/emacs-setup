@@ -1,4 +1,4 @@
-\~eng (setq inhibit-startup-message t)
+(setq inhibit-startup-message t)
 (scroll-bar-mode -1)        ; Disable visible scrollbar
 (tool-bar-mode -1)          ; Disable the toolbar
 (tooltip-mode -1)           ; Disable tooltips
@@ -116,16 +116,8 @@
 
 (use-package counsel-projectile
   :config (counsel-projectile-mode))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(counsel-projectile projectile which-key web-mode use-package rainbow-delimiters prettier material-theme lsp-mode js2-mode ivy-rich emmet-mode dracula-theme doom-themes doom-modeline counsel command-log-mode atom-one-dark-theme all-the-icons aas)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+(use-package magit
+  :commands (magit-status magit-get-current-branch)
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
