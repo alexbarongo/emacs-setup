@@ -121,3 +121,43 @@
   :commands (magit-status magit-get-current-branch)
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+(use-package forge)
+
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
+  :config
+  (lsp-enable-which-key-integration t))
+
+(use-package lsp-ui
+  :hook (lsp-mode . lsp-ui-mode)
+  :custom
+  (lsp-ui-doc-position 'bottom))
+
+(use-package lsp-treemacs
+  :after lsp)
+
+(use-package dap-mode
+  :custom
+  (lsp-enable-dap-auto-configure nil)
+  :config
+  (dap-ui-mode 1)
+  :config
+  (dap-tooltip-mode 1)
+  :config
+  (tooltip-mode 1)
+  :config
+  (dap-ui-controls-mode 1)
+
+  :config
+  (require 'dap-node)
+  (dap-node-setup)
+
+  :config
+  (require 'dap-firefox)
+  (dap-firefox-setup)
+  )
+
+(ac-config-default)
